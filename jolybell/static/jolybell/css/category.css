@@ -2,10 +2,13 @@
     box-sizing: border-box;
     scrollbar-width: none;
 }
-body, html {
+
+body,
+html {
     margin: 0;
     padding: 0;
 }
+
 body {
     display: flex;
     flex-direction: column;
@@ -19,13 +22,16 @@ body {
     display: flex;
     flex-direction: column;
 }
+
 .nav {
     display: flex;
     height: auto;
     justify-content: center;
     padding: 0px 40px;
 }
-.header ul, .footer ul {
+
+.header ul,
+.footer ul {
     list-style: none;
     width: 100%;
     margin: 0;
@@ -36,16 +42,20 @@ body {
     margin-top: 30px;
     padding-bottom: 30px;
 }
-.header li a, .footer li a {
+
+.header li a,
+.footer li a {
     text-decoration: none;
     color: white;
     text-transform: uppercase;
     font-size: 15px;
 }
-.header li a:hover, 
+
+.header li a:hover,
 .footer li a:hover {
     text-decoration: underline;
 }
+
 .logo {
     display: flex;
     width: 100%;
@@ -54,6 +64,13 @@ body {
     border-bottom: 2px solid white;
     margin-top: 40px;
 }
+
+.logo a {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 img {
     width: 15.5%;
     height: 100%;
@@ -64,10 +81,12 @@ img {
     flex-direction: column;
     color: black;
 }
+
 .content_heading {
     display: flex;
     justify-content: center;
 }
+
 .content_heading h1 {
     font-size: 38px;
 }
@@ -80,12 +99,14 @@ img {
     margin-top: -50px;
     margin-bottom: 100px;
 }
+
 .product-inner {
     width: 364px;
     height: 380px;
     background-color: yellow;
     border-radius: 29px;
 }
+
 .product-btn {
     width: 364px;
     height: 58px;
@@ -95,6 +116,7 @@ img {
     border: 1px solid #9c9eaf;
     margin-top: 25px;
 }
+
 .product {
     margin-top: 60px;
 }
@@ -104,27 +126,33 @@ img {
     color: white;
     padding: 40px;
 }
+
 .footer ul {
     margin-top: 0;
 }
+
 .contact-info {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-top: 30px;
 }
+
 .svg {
     fill: #888;
 }
+
 .social {
     fill: #fff;
 }
+
 .contact-info_other {
     flex-grow: 1;
     justify-content: space-between;
     text-align: end;
     font-size: 18px;
 }
+
 .contact-info_social {
     flex-grow: 2;
 }

@@ -12,19 +12,15 @@
 <body>
     <header class="header">
         <div class="logo">
-            <img src="{% static 'jolybell/img/logo.png'%}" alt="">
+            <a href="{% url 'index' %}">
+                <img src="{% static 'jolybell/img/logo.png'%}" alt="">
+            </a>
         </div>
         <div class="nav">
             <ul>
-                <li><a href="#">T-shirts</a></li>
-                <li><a href="#">Sweatshirts</a></li>
-                <li><a href="#">Hoodies</a></li>
-                <li><a href="#">Shirts</a></li>
-                <li><a href="#">Caps</a></li>
-                <li><a href="#">Polos</a></li>
-                <li><a href="#">Bags</a></li>
-                <li><a href="#">Souvenirs</a></li>
-                <li><a href="#">Memes</a></li>
+                {% for category in categories %}
+                <li><a href="{% url 'category' category.name %}">{{category.name}}</a></li>
+                {% endfor %}
                 <li><a href="#">FAQ</a></li>
                 <li><a href="#">Order status</a></li>
             </ul>
@@ -36,15 +32,9 @@
     <footer class="footer">
         <div>
             <ul>
-                <li><a href="#">T-shirts</a></li>
-                <li><a href="#">Sweatshirts</a></li>
-                <li><a href="#">Hoodies</a></li>
-                <li><a href="#">Shirts</a></li>
-                <li><a href="#">Caps</a></li>
-                <li><a href="#">Polos</a></li>
-                <li><a href="#">Bags</a></li>
-                <li><a href="#">Souvenirs</a></li>
-                <li><a href="#">Memes</a></li>
+                {% for category in categories %}
+                <li><a href="{% url 'category' category.name %}">{{category.name}}</a></li>
+                {% endfor %}
                 <li><a href="#">FAQ</a></li>
                 <li><a href="#">Order status</a></li>
             </ul>

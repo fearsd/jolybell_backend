@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from jolybell.views import index
+from jolybell.views import index, category
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('category/<str:name>', category, name="category"),
     path('', index, name="index"),
 ]
