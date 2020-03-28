@@ -31,30 +31,12 @@
             <h1>{{category.name|title}}</h1>
         </div>
         <div class="products">
+            {% for product in products %}
             <div class="product">
                 <div class="product-inner"></div>
-                <button class="product-btn">Buy</button>
+                <button class="product-btn">{{product.name}}</button>
             </div>
-            <div class="product">
-                <div class="product-inner"></div>
-                <button class="product-btn">Buy</button>
-            </div>
-            <div class="product">
-                <div class="product-inner"></div>
-                <button class="product-btn">Buy</button>
-            </div>
-            <div class="product">
-                <div class="product-inner"></div>
-                <button class="product-btn">Buy</button>
-            </div>
-            <div class="product">
-                <div class="product-inner"></div>
-                <button class="product-btn">Buy</button>
-            </div>
-            <div class="product">
-                <div class="product-inner"></div>
-                <button class="product-btn">Buy</button>
-            </div>
+            {% endfor %}
         </div>
     </div>
     <footer class="footer">
