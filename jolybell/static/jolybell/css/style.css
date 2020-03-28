@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+    scrollbar-width: none;
+}
+body, html {
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Baloo 2', cursive;
+    font-weight: 400;
+    letter-spacing: .07em;
+}
+.header {
+    height: 100vh;
+    background: url(../img/0.webp) no-repeat center top / cover;
+    display: flex;
+    flex-direction: column;
+}
+.nav {
+    display: flex;
+    height: auto;
+    justify-content: center;
+    padding: 0px 40px;
+}
+.header ul, .footer ul {
+    list-style: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+.header li a, .footer li a {
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+.header li a:hover, 
+.footer li a:hover {
+    text-decoration: underline;
+}
+.logo {
+    display: flex;
+    width: 100%;
+    height: 9.3%;
+    justify-content: center;
+    border-bottom: 2px solid white;
+    margin-top: 40px;
+}
+img {
+    width: 15.5%;
+    height: 100%;
+}
+
+.motto {
+    height: 140px;
+    display: flex;
+    font-size: 21px;
+    text-transform: uppercase;
+    justify-content: center;
+    align-items: center;
+}
+.motto span {
+    background-color: black;
+    color: white;
+    font-weight: 700;
+    padding: 9px 15px;
+}
+
+.footer {
+    background-color: #0d0d0e;
+    color: white;
+    padding: 40px;
+}
+.footer ul {
+    margin-top: 0;
+}
+.contact-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 60px;
+}
+.svg {
+    fill: #888;
+}
+.social {
+    fill: #fff;
+}
+.contact-info_other {
+    flex-grow: 1;
+    justify-content: space-between;
+    text-align: end;
+    font-size: 18px;
+}
+.contact-info_social {
+    flex-grow: 2;
+}
