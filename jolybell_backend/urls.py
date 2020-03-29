@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from jolybell.views import index, category, category_collection, products_collection
+from jolybell.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,5 +24,6 @@ urlpatterns = [
 
     path('api/categories/', category_collection),
     path('api/products/<str:name>/', products_collection),
+    path('api/product/<int:pk>/', product_detail),
     path('', index, name="index"),
 ]

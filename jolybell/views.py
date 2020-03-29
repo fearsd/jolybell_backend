@@ -4,7 +4,7 @@ from django.http import HttpResponse, JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from .serializers import CategorySerializer, ProductSerializer
+from .serializers import CategorySerializer, ProductListSerializer, ProductDetailSerializer
 from .models import Category, Product
 
 def index(request):
@@ -35,5 +35,15 @@ def products_collection(request, name):
         return JsonResponse({"status": 404})
     if request.method == 'GET':
         products = Product.objects.filter(category=category)
-        serializer = ProductSerializer(products, many=True)
+        serializer = ProductListSerializer(products, many=True)
+        return Response(serializer.data)
+
+@api_view(['GET'])
+def product_detail(request, pk):
+    try:
+        product = get_object_or_404(Product, pk=pk)
+    except:
+        return JsonResponse({"status": 404})
+    if request.method == 'GET':
+        serializer = ProductDetailSerializer(product)
         return Response(serializer.data)
