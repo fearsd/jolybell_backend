@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+2&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'jolybell/css/category.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="{% url 'index' %}">
+                <img src="{% static 'jolybell/img/logo.png' %}" alt="">
+            </a>
+        </div>
+        <div class="nav">
+            <ul>
+                {% for one in categories %}
+                <li><a href="{% url 'category' one.name %}">{{one.name}}</a></li>
+                {% endfor %}
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Order status</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="info">
+        <h1>{{user.username}}'s cart</h1>
+        <ul>
+            {% for product in products %}
+            <li><a href="{% url 'product' product.pk %}">{{product}}</a></li>
+            {% endfor %}
+        </ul>
+        <form>
+            {% csrf_token %}
+            <button type="submit">Order</button>
+        </form>
+    </div>
+</body>
+
+</html>

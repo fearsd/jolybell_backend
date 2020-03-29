@@ -21,6 +21,9 @@ from jolybell.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('category/<str:name>', category, name="category"),
+    path('add_to_cart/<int:pk>', add_to_cart, name="add_to_cart"),
+    path('cart/', cart, name="cart"),
+    path('product/<int:pk>', product, name="product"),
 
     path('api/categories/', category_collection),
     path('api/products/<str:name>/', products_collection),

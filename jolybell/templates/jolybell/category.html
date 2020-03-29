@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'jolybell/css/category.css' %}">
     <title>Сategory</title>
 </head>
+
 <body>
     <header class="header">
         <div class="logo">
@@ -34,7 +36,11 @@
             {% for product in products %}
             <div class="product">
                 <div class="product-inner"></div>
-                <button class="product-btn">{{product.name}}</button>
+                <form action="{% url 'add_to_cart' product.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="product-btn">{{product.name}}</button>
+                </form>
+
             </div>
             {% endfor %}
         </div>
@@ -57,12 +63,12 @@
             </div>
             <div class="contact-info_other">
                 <div>
-                    Email:<br>shiztsov@pryadko.com<br><br>
-                    Support Service Hours:<br>mon-fri: 9:00 - 21:00
+                    Email:<br>shiztsov@pryadko.com<br><br> Support Service Hours:<br>mon-fri: 9:00 - 21:00
                 </div>
             </div>
         </div>
     </footer>
 
 </body>
+
 </html>

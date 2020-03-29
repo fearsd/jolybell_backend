@@ -1,11 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.http import HttpResponse, JsonResponse
 
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from .serializers import CategorySerializer, ProductListSerializer, ProductDetailSerializer
-from .models import Category, Product
+from .models import Category, Product, Cart
 
 def index(request):
     categories = Category.objects.all()
@@ -20,6 +20,29 @@ def category(request, name):
     context = {'category': category, 'categories': categories, 'products': products}
     return render(request, 'jolybell/category.html', context)
 
+def product(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    categories = Category.objects.all()
+    context = {'categories': categories, 'product': product}
+    return render(request, 'jolybell/product.html', context)
+
+def add_to_cart(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    cart, l = Cart.objects.get_or_create(user=request.user)
+    cart.products.add(product)
+    return redirect(reverse('index'))
+
+def cart(request):
+    user = request.user
+    cart = get_object_or_404(Cart, user=user)
+    if request.method == 'GET':
+        categories = Category.objects.all()
+        context = {'categories': categories, 'user': user, 'products': cart.products.all()}
+        return render(request, 'jolybell/cart.html', context)
+    else:
+        pass
+
+        
 @api_view(['GET'])
 def category_collection(request):
     if request.method == 'GET':
