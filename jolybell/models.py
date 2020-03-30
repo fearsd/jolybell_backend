@@ -27,10 +27,10 @@ class Cart(models.Model):
 
 class Order(models.Model):
     STATUS_CHOICES = [
-        ('IPM', 'In process of making'),
-        ('INS', 'In stock'),
-        ('IND', 'In delivery'),
-        ('IPO', 'In your post office')
+        ('In process of making', 'IPM'),
+        ('In stock', 'INS'),
+        ('In delivery', 'IND'),
+        ('In your post office', 'IPO')
     ]
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -39,6 +39,11 @@ class Order(models.Model):
     full_price = models.IntegerField(null=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_delivered = models.DateTimeField(null=True)
-    status = models.CharField(max_length=3, choices=STATUS_CHOICES, default='IPM')
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='IPM')
     delivered = models.BooleanField(default=False)
+
+    def __str__(self):
+        string = str(self.user) + "'s order created at " + str(self.date_created)
+        return string
+
     

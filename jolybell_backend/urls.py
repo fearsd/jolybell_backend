@@ -24,6 +24,8 @@ urlpatterns = [
     path('add_to_cart/<int:pk>', add_to_cart, name="add_to_cart"),
     path('cart/', cart, name="cart"),
     path('product/<int:pk>', product, name="product"),
+    path('cabinet/', user_cabinet, name='cabinet'),
+    path('order/<int:pk>', order, name="order"),
 
     path('api/categories/', category_collection),
     path('api/products/<str:name>/', products_collection),

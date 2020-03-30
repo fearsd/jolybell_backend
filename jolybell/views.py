@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from .serializers import CategorySerializer, ProductListSerializer, ProductDetailSerializer
-from .models import Category, Product, Cart
+from .models import Category, Product, Cart, Order
 
 def index(request):
     categories = Category.objects.all()
@@ -40,7 +40,33 @@ def cart(request):
         context = {'categories': categories, 'user': user, 'products': cart.products.all()}
         return render(request, 'jolybell/cart.html', context)
     else:
-        pass
+        address = request.POST['address']
+        full_price = 0
+        for product in cart.products.all():
+            full_price += product.price
+
+        order = Order(user=user, address=address, full_price=full_price)
+        order.save()
+        for product in cart.products.all():
+            order.products.add(product)
+        for product in cart.products.all():
+            product.cart_set.clear()
+        cart.products.clear()
+        return redirect(reverse('index'))
+
+def user_cabinet(request):
+    user = request.user
+    orders = Order.objects.filter(user=user)
+    categories = Category.objects.all()
+    context = {'categories': categories, 'user': user , 'orders': orders}
+    return render(request, 'jolybell/cabinet.html', context)
+
+def order(request, pk):
+    order = get_object_or_404(Order, pk=pk)
+    categories = Category.objects.all()
+    context = {'categories': categories, 'order': order}
+    return render(request, 'jolybell/order.html', context)
+        
 
         
 @api_view(['GET'])

@@ -29,18 +29,22 @@
         </div>
     </header>
     <div class="info">
-        <h1>{{user.username}}'s cart</h1>
+        <h1>{{user.username}}'s order</h1>
+        <h2>Products: </h2>
         <ul>
-            {% for product in products %}
-            <li><a href="{% url 'product' product.pk %}">{{product}}</a></li>
-            {% endfor %}
+        {% for product in order.products.all %}
+        <li>{{product}} - {{product.price}}</li>
+        {% endfor %}
         </ul>
-        <form method="POST">
-            {% csrf_token %}
-            <label for="address">Your address</label>
-            <input type="text" name="address" required>
-            <button type="submit">Order</button>
-        </form>
+        <p>Full price: {{order.full_price}}</p>
+        <p>{{order.date_created}}</p>
+        <p>{{order.status}}</p>
+        {% if order.delivered %}
+        Delivered
+        {{order.date_delivered}}
+        {% else %}
+        Not delivered
+        {% endif %}
     </div>
 </body>
 
