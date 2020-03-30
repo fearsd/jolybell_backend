@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.http import HttpResponse, JsonResponse
+from django.contrib.auth.models import User
 
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -104,7 +105,7 @@ def cart_collection(request):
         serializer = CartListSerializer(carts, many=True)
         return Response(serializer.data)
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def cart_detail(request, pk):
     try:
         cart = get_object_or_404(Cart, pk=pk)
@@ -113,6 +114,14 @@ def cart_detail(request, pk):
     if request.method == 'GET':
         serializer = CartSerializer(cart)
         return Response(serializer.data)
+
+    else:
+        pr_pk = request.data.get('product')
+        product = get_object_or_404(Product, pk=pr_pk)
+        cart.products.add(product)
+        return JsonResponse({'status': 'ok'})
+
+
 
 @api_view(['GET'])
 def order_collection(request):
