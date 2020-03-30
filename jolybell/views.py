@@ -121,8 +121,6 @@ def cart_detail(request, pk):
         cart.products.add(product)
         return JsonResponse({'status': 'ok'})
 
-
-
 @api_view(['GET'])
 def order_collection(request):
     if request.method == 'GET':
@@ -139,3 +137,12 @@ def order_detail(request, pk):
     if request.method == 'GET':
         serializer = OrderSerializer(order)
         return Response(serializer.data)
+
+@api_view(['POST'])
+def create_new_cart(request):
+    if request.method == 'POST':
+        user_pk = request.data.get('user')
+        user = get_object_or_404(User, pk=user_pk)
+        cart = Cart(user=user)
+        cart.save()
+        return JsonResponse({'status': 'ok'})
