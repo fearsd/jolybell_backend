@@ -120,3 +120,13 @@ def order_collection(request):
         orders = Order.objects.all()
         serializer = OrderListSerializer(orders, many=True)
         return Response(serializer.data)
+
+@api_view(['GET'])
+def order_detail(request, pk):
+    try:
+        order = get_object_or_404(Order, pk=pk)
+    except:
+        return JsonResponse({'status': 404})
+    if request.method == 'GET':
+        serializer = OrderSerializer(order)
+        return Response(serializer.data)

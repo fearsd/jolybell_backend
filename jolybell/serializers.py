@@ -36,3 +36,10 @@ class OrderListSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order
         fields = ('id', 'user', 'date_created', 'status')
+
+class OrderSerializer(serializers.HyperlinkedModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    products = ProductListSerializer(read_only=True, many=True)
+    class Meta:
+        model = Order
+        fields = ('id', 'user', 'products', 'address', 'full_price', 'date_created', 'date_delivered', 'status', 'delivered')
