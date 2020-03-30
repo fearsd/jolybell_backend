@@ -31,5 +31,6 @@ urlpatterns = [
     path('api/products/<str:name>/', products_collection),
     path('api/product/<int:pk>/', product_detail),
     path('api/carts/', cart_collection),
+    path('api/cart/<int:pk>/', cart_detail),
     path('', index, name="index"),
 ]

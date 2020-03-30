@@ -103,3 +103,14 @@ def cart_collection(request):
         carts = Cart.objects.all()
         serializer = CartListSerializer(carts, many=True)
         return Response(serializer.data)
+
+@api_view(['GET'])
+def cart_detail(request, pk):
+    try:
+        cart = get_object_or_404(Cart, pk=pk)
+    except:
+        return JsonResponse({'status': 404})
+    if request.method == 'GET':
+        serializer = CartSerializer(cart)
+        return Response(serializer.data)
+
