@@ -114,3 +114,9 @@ def cart_detail(request, pk):
         serializer = CartSerializer(cart)
         return Response(serializer.data)
 
+@api_view(['GET'])
+def order_collection(request):
+    if request.method == 'GET':
+        orders = Order.objects.all()
+        serializer = OrderListSerializer(orders, many=True)
+        return Response(serializer.data)

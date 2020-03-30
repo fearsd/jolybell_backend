@@ -30,3 +30,9 @@ class CartSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Cart
         fields = ('id', 'user', 'products')
+
+class OrderListSerializer(serializers.HyperlinkedModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    class Meta:
+        model = Order
+        fields = ('id', 'user', 'date_created', 'status')
