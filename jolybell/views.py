@@ -4,7 +4,7 @@ from django.http import HttpResponse, JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from .serializers import CategorySerializer, ProductListSerializer, ProductDetailSerializer
+from .serializers import *
 from .models import Category, Product, Cart, Order
 
 def index(request):
@@ -95,4 +95,11 @@ def product_detail(request, pk):
         return JsonResponse({"status": 404})
     if request.method == 'GET':
         serializer = ProductDetailSerializer(product)
+        return Response(serializer.data)
+
+@api_view(['GET'])
+def cart_collection(request):
+    if request.method == 'GET':
+        carts = Cart.objects.all()
+        serializer = CartListSerializer(carts, many=True)
         return Response(serializer.data)
